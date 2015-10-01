@@ -1,0 +1,4 @@
+src/templates/
+build/
+build/public
+node_modules/
