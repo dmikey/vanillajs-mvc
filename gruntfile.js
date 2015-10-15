@@ -5,7 +5,7 @@ module.exports = function (grunt) {
         browserify: {
             dist: {
                 files: {
-                    'build/app.js': ['src/**/*.js']
+                    'build/app.js': ['src/**/*.js', '!src/server/*.js']
                 }
             }
         },

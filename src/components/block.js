@@ -1,6 +1,34 @@
 var
     debounce = require('../utils/debounce');
 
+if(typeof window == 'object') {
+    document = window.document;
+} else {
+    document = {
+        createDocumentFragment: function(){
+            var children = [];
+            return {
+                appendChild: function(child) {
+                    children.push(child);
+                },
+                getChildren: function() {
+                    return children;
+                }   
+            }
+        },
+        createElement: function(type) {
+            return {
+                children: [
+                    void(0)
+                ],
+                child: function(){
+                    return this.innerHTML;   
+                }
+            }
+        }
+    };
+}
+
 module.exports = function (components) {
 
     this.add = function (target) {
@@ -13,6 +41,7 @@ module.exports = function (components) {
         };
 
         this.fragment = fragment;
+        
         target.appendChild(this.fragment);
     };
 
